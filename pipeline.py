@@ -6,7 +6,7 @@ bqclient = bigquery.Client()
 query_string = """
 SELECT product_id, price, category, volume
 FROM `sandbox-ml-pipeline.featurestore.history`
-WHERE product_id in ('1', '2', '3')
+WHERE product_id in ('4', '5', '6', '7')
 """
 
 dataframe = (
