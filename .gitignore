@@ -2,3 +2,5 @@ sandbox-ml-pipeline-71a93e98c92a.json
 /env-dvc
 /test.csv
 /train.csv
+test.parquet
+train.parquet
