@@ -20,6 +20,11 @@ dataframe = (
 train = dataframe[:8]
 test = dataframe[8:]
 
+train["volume"] = train.volume.astype("str")
+test["volume"] = test.volume.astype("str")
+
+print(train.dtypes)
+
 train.to_parquet("train.parquet")
 test.to_parquet("test.parquet")
 print(dataframe)
