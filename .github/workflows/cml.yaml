@@ -1,0 +1,21 @@
+name: dataset-diff
+on: [push]
+ jobs:  
+    run:    
+      runs-on: [ubuntu-latest]
+      steps:      
+        - uses: actions/checkout@v2     
+        - uses: iterative/setup-cml@v1     
+        - uses: actions/setup-python@v2        
+        with:          
+          python-version: '3.x'       
+        - name: cml        
+        env: REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+            pip3 install dvc pandas
+            dvc pull
+
+            python dataset_describer.py
+
+            cat dataset_describe.json >> report.md
+            cml-send-comment report.md
