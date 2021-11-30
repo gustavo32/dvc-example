@@ -16,8 +16,10 @@ jobs:
             #     python-version: '3.x'
             - uses: iterative/setup-cml@v1
             - name: Dataset Diff
+              env:
+                  GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
               run: |
-                  pip3 install dvc pandas
+                  pip3 install 'dvc[gs]' pandas
                   dvc pull
                   python dataset_describer.py
             - name: Write CML report
