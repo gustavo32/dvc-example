@@ -17,8 +17,10 @@ dataframe = (
     )
 )
 
-train = dataframe[:8]
-test = dataframe[8:]
+train = dataframe[:10]
+test = dataframe[10:]
+
+print(train)
 
 # train["volume"] = train.volume.astype("str")
 # test["volume"] = test.volume.astype("str")
