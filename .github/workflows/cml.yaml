@@ -42,5 +42,6 @@ jobs:
               env:
                   REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-                  dvc metrics diff --targets output_current.json output_previous.yaml --show-md >> report.md
+                  dvc metrics show output_current.json --show-md >> report.md
+                  dvc metrics show output_previous.json --show-md >> report.md
                   cml-send-comment report.md
