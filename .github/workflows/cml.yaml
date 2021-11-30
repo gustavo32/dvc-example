@@ -22,16 +22,17 @@ jobs:
                   service_account_email: ${{ secrets.GCP_EMAIL }}
                   service_account_key: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
                   export_default_credentials: true
+              run: |
+                  pip3 install 'dvc[gs]' pandas
+                  dvc pull
 
             - name: Use gcloud CLI
               run: gcloud info
 
             - name: Dataset Diff
-              env:
-                  GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
               run: |
-                  pip3 install 'dvc[gs]' pandas
-                  dvc pull
+                  # pip3 install 'dvc[gs]' pandas
+                  # dvc pull
                   python dataset_describer.py
 
             - name: Write CML report
