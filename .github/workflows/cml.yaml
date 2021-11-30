@@ -15,6 +15,17 @@ jobs:
             #   with:
             #     python-version: '3.x'
             - uses: iterative/setup-cml@v1
+
+            - name: Set up Cloud SDK
+              uses: google-github-actions/setup-gcloud@master
+              with:
+                  project_id: ${{ secrets.GCP_PROJECT_ID }}
+                  service_account_key: ${{ secrets.GCP_SA_KEY }}
+                  export_default_credentials: true
+
+            - name: Use gcloud CLI
+              run: gcloud info
+
             - name: Dataset Diff
               env:
                   GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
