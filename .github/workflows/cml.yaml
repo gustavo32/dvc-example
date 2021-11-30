@@ -34,8 +34,7 @@ jobs:
 
             - name: Checkout previous commit
               run: |
-                  git log --branches -1 --pretty=format:'%D'
-                  git checkout HEAD~1
+                  git checkout new_experiment~1
                   dvc pull
                   python dataset_describer.py output_previous.json
 

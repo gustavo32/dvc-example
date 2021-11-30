@@ -17,8 +17,8 @@ dataframe = (
     )
 )
 
-train = dataframe[:5]
-test = dataframe[5:]
+train = dataframe[:10]
+test = dataframe[10:]
 
 print(train)
 
