@@ -28,7 +28,7 @@ jobs:
 
             - name: Dataset Diff
               run: |
-                  pip3 install 'dvc[gs]' pandas
+                  pip3 install -r requirements.txt
                   dvc pull
                   python dataset_describer.py
 
