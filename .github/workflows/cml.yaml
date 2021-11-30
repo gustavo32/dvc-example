@@ -34,6 +34,7 @@ jobs:
 
             - name: Checkout previous commit
               run: |
+                  git fetch
                   git checkout master
                   dvc pull
                   python dataset_describer.py output_previous.json
