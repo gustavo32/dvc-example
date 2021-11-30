@@ -1,16 +1,23 @@
 name: dataset-diff
 on: [push]
- jobs:  
-    run:    
-      runs-on: [ubuntu-latest]
-      steps:      
-        - uses: actions/checkout@v2     
-        - uses: iterative/setup-cml@v1     
-        - uses: actions/setup-python@v2        
-        with:          
-          python-version: '3.x'       
-        - name: cml        
-        env: REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+ jobs:
+    run:
+      runs-on: ubuntu-latest
+      # optionally use a convenient Ubuntu LTS + DVC + CML image
+      # container: docker://ghcr.io/iterative/cml:0-dvc2-base1
+      steps:
+        - uses: actions/checkout@v2
+        # may need to setup NodeJS & Python3 on e.g. self-hosted
+        # - uses: actions/setup-node@v2
+        #   with:
+        #     node-version: '12'
+        - uses: actions/setup-python@v2
+          with:
+            python-version: '3.x'
+        - uses: iterative/setup-cml@v1
+        - name: Write CML report
+          env:
+            repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
             pip3 install dvc pandas
             dvc pull
