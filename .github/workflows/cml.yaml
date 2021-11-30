@@ -19,7 +19,7 @@ jobs:
             - name: Set up Cloud SDK
               uses: google-github-actions/setup-gcloud@master
               with:
-                  project_id: ${{ secrets.GCP_PROJECT_ID }}
+                  service_account_email: ${{ secrets.GCP_EMAIL }}
                   service_account_key: ${{ secrets.GCP_SA_KEY }}
                   export_default_credentials: true
 
@@ -33,6 +33,7 @@ jobs:
                   pip3 install 'dvc[gs]' pandas
                   dvc pull
                   python dataset_describer.py
+
             - name: Write CML report
               env:
                   REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
